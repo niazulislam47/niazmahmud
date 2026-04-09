@@ -6,14 +6,15 @@
     <title>My Portfolio | Niazul Islam Maruf</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- STYLISH & MOODY CSS --- */
         :root {
-            --primary-color: #00d2ff; /* Electric Cyan/Blue for Neon Vibe */
+            --primary-color: #00d2ff; /* Electric Cyan/Blue */
             --text-main: #ffffff;
             --text-muted: #b3b3b3;
             --glass-bg: rgba(255, 255, 255, 0.05);
@@ -30,7 +31,7 @@
 
         /* Moody Animated Background */
         body {
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0a0a0a);
+            background: linear-gradient(-45deg, #0a1118, #102a36, #163c4d, #050505);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: var(--text-main);
@@ -54,7 +55,8 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
         }
@@ -62,8 +64,13 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--text-main);
             text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .logo:hover {
+            color: var(--primary-color);
             text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
 
@@ -77,6 +84,7 @@
             text-decoration: none;
             color: var(--text-main);
             font-weight: 400;
+            font-size: 15px;
             transition: 0.3s;
             position: relative;
         }
@@ -116,81 +124,105 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Section */
+        /* --- NEW HERO SECTION (Madison Style) --- */
         #home {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            min-height: 80vh;
-            gap: 40px;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
         }
 
-        .hero-text h3 {
-            font-size: 24px;
-            font-weight: 300;
+        /* "Hey, there" Background Text */
+        .bg-text {
+            position: absolute;
+            top: 20%;
+            width: 100%;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 15vw;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.05); /* Watermark effect */
+            z-index: 1;
+            white-space: nowrap;
+            letter-spacing: 5px;
+        }
+
+        /* Center Profile Image */
+        .hero-image-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            height: 85vh; /* Adjust based on image height */
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-image-wrapper img {
+            height: 100%;
+            object-fit: contain;
+            /* Fading effect at the bottom */
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            filter: drop-shadow(0px 0px 20px rgba(0, 210, 255, 0.1));
+        }
+
+        /* Bottom Left Text (I AM NIAZUL) */
+        .hero-bottom-left {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            z-index: 3;
+            text-transform: uppercase;
+        }
+
+        .hero-bottom-left p {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: -10px;
+            letter-spacing: 1px;
+        }
+
+        .hero-bottom-left h1 {
+            font-size: 5vw;
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--text-main);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Bottom Right Text (Specialized in... & DESIGNER) */
+        .hero-bottom-right {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            z-index: 3;
+            text-align: right;
+        }
+
+        .hero-desc {
+            font-size: 14px;
             color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 400;
+            max-width: 250px;
+            margin-left: auto;
         }
 
-        .hero-text h1 {
-            font-size: 55px;
-            margin-bottom: 10px;
-            line-height: 1.2;
+        .hero-bottom-right h2 {
+            font-size: 3.5vw;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            color: var(--text-main);
         }
 
-        .hero-text span {
-            color: var(--primary-color);
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
-        }
-
-        .hero-text p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: var(--text-muted);
-        }
-
-        .hero-text b {
-            color: #fff;
-        }
-
-        /* Neon Button */
-        .btn {
-            padding: 12px 30px;
-            background: transparent;
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: 0.4s;
-            border: 2px solid var(--primary-color);
-            cursor: pointer;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2) inset, 0 0 10px rgba(0, 210, 255, 0.2);
-        }
-
-        .btn:hover {
-            background: var(--primary-color);
-            color: #000;
-            box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        /* Glowing Profile Image */
-        .hero-img img {
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
-            transition: 0.5s;
-        }
-
-        .hero-img img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(0, 210, 255, 0.8);
-        }
-
-        /* Glassmorphism Cards */
+        /* Education & About Section Cards */
         .timeline {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -227,24 +259,7 @@
             border-color: rgba(0, 210, 255, 0.3);
         }
 
-        .card h3 {
-            font-size: 22px;
-            color: #fff;
-        }
-
-        .card h4 {
-            font-size: 16px;
-            color: var(--primary-color);
-            margin: 8px 0 15px 0;
-            font-weight: 400;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
-
-        /* Contact Section */
+        /* Contact Section Fixes */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -256,6 +271,8 @@
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 1000px;
+            margin: 0 auto; /* Centered in page */
         }
 
         .contact-info {
@@ -264,64 +281,48 @@
             justify-content: center;
         }
 
-        .contact-info h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
         .contact-info p {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: var(--text-muted);
             display: flex;
             align-items: center;
+            margin-bottom: 15px;
         }
 
         .contact-info i {
             color: var(--primary-color);
             font-size: 20px;
             margin-right: 15px;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
         }
 
         .social-links {
             display: flex;
             gap: 20px;
-            margin-top: 25px;
+            margin-top: 15px;
         }
 
         .social-links a {
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
+            font-size: 20px;
+            width: 45px;
+            height: 45px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            background: var(--glass-bg);
-            color: var(--text-main);
-            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+            color: var(--primary-color);
+            border: 1px solid rgba(0, 210, 255, 0.3);
             transition: 0.4s;
         }
 
         .social-links a:hover {
             background: var(--primary-color);
             color: #000;
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--primary-color);
-            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
         }
 
-        /* Contact Form */
-        .contact-form h3 {
-            margin-bottom: 25px;
-            font-size: 28px;
-            color: #fff;
-        }
-
+        /* Input Form */
         .input-group {
             margin-bottom: 20px;
+            width: 100%;
         }
 
         .input-group input,
@@ -329,32 +330,36 @@
             width: 100%;
             padding: 15px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
             color: #fff;
             outline: none;
             transition: 0.3s;
         }
 
-        .input-group input::placeholder,
-        .input-group textarea::placeholder {
-            color: #888;
-        }
-
         .input-group input:focus,
         .input-group textarea:focus {
             border-color: var(--primary-color);
-            background: rgba(0, 210, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
         }
 
-        .contact-form .btn {
+        .btn {
             width: 100%;
-            font-size: 18px;
             padding: 15px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
             border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-color);
         }
 
         /* Footer */
@@ -363,40 +368,77 @@
             padding: 25px;
             background: rgba(0, 0, 0, 0.6);
             border-top: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            font-size: 14px;
             margin-top: 50px;
         }
 
-        /* Responsive Design */
+        /* --- MOBILE RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            #home {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 120px;
-            }
-            .hero-img img {
-                width: 280px;
-                height: 280px;
-            }
-            .hero-text h1 {
-                font-size: 40px;
-            }
-            .timeline, .contact-container {
-                grid-template-columns: 1fr;
+            nav {
+                justify-content: center;
             }
             .nav-links {
                 display: none; 
             }
-            .social-links {
-                justify-content: center;
+            
+            /* Mobile Hero Adjustments */
+            #home {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 120px;
+            }
+            .bg-text {
+                font-size: 25vw;
+                top: 15%;
+            }
+            .hero-image-wrapper {
+                position: relative;
+                height: 50vh;
+                margin-top: 50px;
+                left: 0;
+                transform: none;
+            }
+            .hero-bottom-left, .hero-bottom-right {
+                position: relative;
+                text-align: center;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin-top: 20px;
+            }
+            .hero-bottom-left h1 {
+                font-size: 12vw;
+            }
+            .hero-bottom-right h2 {
+                font-size: 8vw;
+                margin-top: 15px;
+            }
+            .hero-desc {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Center Alignment for Mobile Contact Form */
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                text-align: center; /* Center all text */
             }
             .contact-info {
-                text-align: center;
-                margin-bottom: 30px;
+                align-items: center; /* Center elements in flex */
+                margin-bottom: 20px;
             }
             .contact-info p {
-                justify-content: center;
+                justify-content: center; /* Center icon and text */
+            }
+            .social-links {
+                justify-content: center; /* Center social icons */
+            }
+            .contact-form {
+                width: 100%;
             }
         }
     </style>
@@ -405,7 +447,7 @@
 
     <!-- Navbar -->
     <nav>
-        <a href="#" class="logo">Niazul Islam Maruf </a>
+        <a href="#home" class="logo">Niazul Islam Maruf</a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -414,17 +456,30 @@
         </ul>
     </nav>
 
-    <!-- Home/Hero Section -->
+    <!-- NEW HERO SECTION (Madison Reference Style) -->
     <section id="home">
-        <div class="hero-text">
-            <h3>Hello, It's Me</h3>
-            <h1><span>Niazul Islam Maruf</span></h1>
-            <p>I'm a <b>Web Designer</b> and a <b>Pharmacist</b> based in Bangladesh. I love creating beautiful web designs and have a strong background in pharmacy.</p>
-            
-            <a href="#contact" class="btn">Contact Me</a>
+        <!-- Background Text -->
+        <div class="bg-text">Hey, there</div>
+        
+        <!-- Profile Image (USE A BACKGROUND-REMOVED PNG IMAGE HERE) -->
+        <div class="hero-image-wrapper">
+            <img src="profile.png" alt="Niazul Islam Maruf">
         </div>
-        <div class="hero-img">
-            <img src="profile.jpg" alt="Niazul Islam Maruf">
+
+        <!-- Left Text -->
+        <div class="hero-bottom-left">
+            <p>I AM</p>
+            <h1>NIAZUL<br>ISLAM MARUF</h1>
+        </div>
+
+        <!-- Right Text -->
+        <div class="hero-bottom-right">
+            <div class="hero-desc">
+                Specialized in Web Design,<br>
+                Pharmacy, and Front<br>
+                End Development.
+            </div>
+            <h2>DIGITAL<br>PRODUCT<br>DESIGNER</h2>
         </div>
     </section>
 
@@ -444,19 +499,16 @@
     <section id="education">
         <h2 class="section-title">Education & Certifications</h2>
         <div class="timeline">
-            
             <div class="card">
-                <h3>Secondary School Certificate (SSC)</h3>
-                <h4>Mohammadpur Ramendra Model High School | 2017</h4>
+                <h3 style="color: #fff;">Secondary School Certificate (SSC)</h3>
+                <h4 style="color: var(--primary-color);">Mohammadpur Ramendra Model High School | 2017</h4>
                 <p>Successfully passed the Secondary School Certificate board examination with good academic records.</p>
             </div>
-
             <div class="card">
-                <h3>C-Category Pharmacist Exam</h3>
-                <h4>63rd Pharmacy Council of Bangladesh | 2024</h4>
+                <h3 style="color: #fff;">C-Category Pharmacist Exam</h3>
+                <h4 style="color: var(--primary-color);">63rd Pharmacy Council of Bangladesh | 2024</h4>
                 <p>Successfully participated in the 63rd C-Category Pharmacist examination in 2024 to build a professional career in the pharmacy sector.</p>
             </div>
-
         </div>
     </section>
 
@@ -467,10 +519,9 @@
         <div class="contact-container">
             <!-- Contact Info (Left Side) -->
             <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p><i class="fa-solid fa-envelope"></i> niazulislam47@gmail.com</p>
-                <p><i class="fa-solid fa-envelope"></i> niazulislam47@hotmail.com</p>
+                <h3 style="color:#fff; font-size:28px; margin-bottom: 20px;">Get In Touch</h3>
                 <p><i class="fa-solid fa-phone"></i> +8801631-204313</p>
+                <p><i class="fa-solid fa-envelope"></i> niazulislam47@gmail.com</p>
                 
                 <div class="social-links">
                     <a href="https://facebook.com/niazulislam.maruf" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
@@ -481,7 +532,7 @@
 
             <!-- Contact Form (Right Side) -->
             <div class="contact-form">
-                <h3>Message Me</h3>
+                <h3 style="color:#fff; font-size:28px; margin-bottom: 20px;">Message Me</h3>
                 <form action="https://formspree.io/f/xgopqloe" method="POST">
                     <div class="input-group">
                         <input type="text" name="name" placeholder="Your Name" required>
