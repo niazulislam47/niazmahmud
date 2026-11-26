@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niazul Islam Maruf (Niaz Mahmud) — Digital Maker & Explorer</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration for Dark Mode & Custom Fonts -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#09090b',
+            surface: '#121216',
+          },
+          animation: {
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Glassmorphism & Interactive Spotlight Utilities */
+    :root {
+      --spotlight-color: rgba(2, 132, 199, 0.08);
+      --border-glow: rgba(15, 23, 42, 0.09);
+    }
+
+    html.dark {
+      --spotlight-color: rgba(56, 189, 248, 0.09);
+      --border-glow: rgba(255, 255, 255, 0.09);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Ambient Spotlight Card Effect */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--spotlight-color),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.45);
+    }
+
+    /* Clean Left-Side Portrait Blend Mask */
+    .hero-side-portrait {
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 76%, transparent 100%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 76%, transparent 100%);
+    }
+
+    @media (min-width: 1024px) {
+      .hero-side-portrait {
+        -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.85) 14%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 92%, transparent 100%),
+                            linear-gradient(to bottom, rgba(0, 0, 0, 1) 78%, transparent 100%);
+        -webkit-mask-composite: source-in;
+        mask-image: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.85) 14%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 92%, transparent 100%),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 1) 78%, transparent 100%);
+        mask-composite: intersect;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-obsidian dark:text-zinc-100 antialiased selection:bg-sky-500/20 selection:text-sky-400 transition-colors duration-300">
+
+  <!-- Ambient Background Mesh & Subtle Cursor Aura -->
+  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div id="global-aura" class="hidden md:block fixed w-[560px] h-[560px] rounded-full bg-sky-400/[0.08] dark:bg-sky-400/[0.05] blur-[120px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out"></div>
+    <div class="absolute top-[-10%] left-[15%] w-[400px] h-[400px] rounded-full bg-sky-200/45 dark:bg-indigo-500/[0.07] blur-[110px] animate-pulse-slow"></div>
+    <div class="absolute bottom-[5%] right-[10%] w-[440px] h-[440px] rounded-full bg-emerald-200/40 dark:bg-teal-500/[0.06] blur-[120px] animate-pulse-slow"></div>
+  </div>
+
+  <!-- Minimalist Floating Navigation -->
+  <header class="sticky top-4 z-40 px-4 sm:px-6">
+    <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3.5 rounded-2xl bg-white/85 dark:bg-zinc-900/65 backdrop-blur-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03]">
+      <!-- Brand / Domain -->
+      <a href="#" class="flex items-center gap-3 group">
+        <span class="w-3 h-3 rounded-full bg-sky-500 group-hover:scale-125 transition-transform"></span>
+        <span class="font-display font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">
+          niazmahmud<span class="text-sky-500">.bro.bd</span>
+        </span>
+      </a>
+
+      <!-- Navigation Links + Theme Toggle -->
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        <a href="#focus" class="px-3.5 py-2 text-sm sm:text-base font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white rounded-xl transition-colors">
+          Focus
+        </a>
+        <a href="#projects" class="px-3.5 py-2 text-sm sm:text-base font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white rounded-xl transition-colors">
+          Projects
+        </a>
+        <a href="#connect" class="px-3.5 py-2 text-sm sm:text-base font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white rounded-xl transition-colors">
+          Connect
+        </a>
+        
+        <!-- Dark / Light Theme Toggle -->
+        <button id="theme-toggle" aria-label="Toggle theme" class="ml-1 p-2.5 rounded-xl text-slate-700 dark:text-zinc-300 hover:bg-slate-200/70 dark:hover:bg-white/[0.07] hover:text-slate-950 dark:hover:text-white transition-all">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-5 sm:px-8">
+
+    <!-- 1. MINIMALIST ASYMMETRIC SPLIT HERO SECTION -->
+    <section class="relative min-h-[84vh] flex flex-col justify-center py-10 sm:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-10">
+        
+        <!-- Left-Side Portrait Frame (Top on Mobile, Left 5 Columns on Desktop) -->
+        <div class="reveal active order-1 lg:order-1 lg:col-span-5 relative flex justify-center lg:justify-start">
+          <div class="relative w-full max-w-sm sm:max-w-md lg:max-w-none h-[360px] sm:h-[430px] lg:h-[540px] rounded-3xl overflow-hidden select-none pointer-events-none">
+            <img 
+              src="20260414_224312-IMG_STYLE.jpg" 
+              alt="Niazul Islam Maruf" 
+              onerror="this.onerror=null;this.src='https://placehold.co/900x1100/e2e8f0/0f172a?text=Niazul+Islam+Maruf';"
+              class="w-full h-full object-cover object-[center_12%] hero-side-portrait transition-all duration-300"
+            />
+            <!-- Subtle Right & Bottom Edge Integration with Background -->
+            <div class="hidden lg:block absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-50 via-slate-50/50 to-transparent dark:from-obsidian dark:via-obsidian/50 dark:to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 via-slate-50/60 to-transparent dark:from-obsidian dark:via-obsidian/60 dark:to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Right-Side Text & Actions (Right 7 Columns on Desktop) -->
+        <div class="reveal active order-2 lg:order-2 lg:col-span-7 relative z-10 space-y-7">
+          <!-- Location Pill -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 dark:bg-zinc-900/80 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.1] text-sm font-medium text-slate-700 dark:text-zinc-200 shadow-xs">
+            <svg class="w-4 h-4 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Senbag, Noakhali, Bangladesh</span>
+          </div>
+
+          <!-- Primary Identity -->
+          <div class="space-y-3.5">
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-[4.25rem] font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.06]">
+              Niazul Islam Maruf
+            </h1>
+            <p class="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-slate-700 dark:text-zinc-300">
+              Also known as <span class="text-slate-950 dark:text-white font-semibold">Niaz Mahmud</span>
+            </p>
+          </div>
+
+          <!-- Tagline -->
+          <p class="max-w-xl text-xl sm:text-2xl text-slate-700 dark:text-zinc-300 leading-relaxed font-normal">
+            Building digital experiences, exploring roads, and mapping the world.
+          </p>
+
+          <!-- Quick-Action Links -->
+          <div class="pt-2 flex flex-wrap items-center gap-3.5 sm:gap-4">
+            <a href="#projects" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-zinc-950 font-semibold text-base hover:bg-slate-800 dark:hover:opacity-90 active:scale-[0.98] transition-all shadow-sm shadow-slate-900/15">
+              <span>Explore Work</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path d="M7 17 17 7M7 7h10v10"></path>
+              </svg>
+            </a>
+
+            <a href="#connect" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/95 dark:bg-zinc-900/80 backdrop-blur-md hover:bg-slate-50 dark:hover:bg-white/[0.1] text-slate-800 dark:text-zinc-100 border border-slate-200/90 dark:border-white/[0.1] font-semibold text-base shadow-xs active:scale-[0.98] transition-all">
+              <span>Get in Touch</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path d="M5 12h14m-7-7 7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a href="#local-guide" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-2xl text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white font-semibold text-base transition-colors">
+              <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                <line x1="9" y1="3" x2="9" y2="18"></line>
+                <line x1="15" y1="6" x2="15" y2="21"></line>
+              </svg>
+              <span>Local Guide</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Subtle Scroll Cue -->
+      <div class="relative z-10 mt-12 sm:mt-16 flex items-center gap-3.5 text-sm font-medium text-slate-600 dark:text-zinc-400 animate-float">
+        <div class="w-5 h-8 rounded-full border border-slate-300 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/70 flex justify-center p-1">
+          <div class="w-1 h-2 rounded-full bg-sky-600 dark:bg-sky-400"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- 2. BENTO-STYLE IDENTITY & FOCUS GRID -->
+    <section id="focus" class="py-16 sm:py-24 space-y-10">
+      <div class="reveal space-y-3">
+        <p class="text-sm font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">Identity & Focus</p>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-slate-950 dark:text-white leading-tight">
+          Where code, hardware & real roads meet
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-5 sm:gap-6">
+        
+        <!-- Card 1: App & Web Prototyping (Wide) -->
+        <div class="reveal spotlight-card md:col-span-4 p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-7">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">
+              App & Web Prototyping
+            </h3>
+            <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+              Creating practical web and mobile applications using <span class="text-slate-950 dark:text-white font-semibold">Flutter</span>, <span class="text-slate-950 dark:text-white font-semibold">Google AI Studio</span>, <span class="text-slate-950 dark:text-white font-semibold">HTML/CSS</span>, and <span class="text-slate-950 dark:text-white font-semibold">GitHub Pages</span> — from curated kids video platforms like <em class="not-italic text-sky-600 dark:text-sky-400 font-semibold">Kids Tube</em> to commerce prototypes like <em class="not-italic text-sky-600 dark:text-sky-400 font-semibold">FarmEasy</em>.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">Flutter</span>
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">Google AI Studio</span>
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">HTML/CSS</span>
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">GitHub Pages</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Healthcare & Pharmacy Operations -->
+        <div class="reveal spotlight-card md:col-span-2 p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-7">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-950 dark:text-white">
+              Healthcare & Pharmacy Operations
+            </h3>
+            <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+              Managing daily pharmacy operations, medicine dispensing, and patient support at <span class="text-slate-950 dark:text-white font-semibold">Raihan Drug House</span>, Hospital Gate, Senbag.
+            </p>
+          </div>
+          <span class="text-sm font-semibold text-rose-600 dark:text-rose-400">Raihan Drug House • Hospital Gate, Senbag</span>
+        </div>
+
+        <!-- Card 3: Hardware & DIY Tinkering -->
+        <div class="reveal spotlight-card md:col-span-3 p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-7">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-950 dark:text-white">
+              Hardware & DIY Tinkering
+            </h3>
+            <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+              Experimenting with <span class="text-slate-950 dark:text-white font-semibold">ESP32 / ESP8266</span> microcontrollers, IR signal decoding, and <span class="text-slate-950 dark:text-white font-semibold">Android 11 rooting / Magisk</span> modules.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">ESP32 / ESP8266</span>
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">IR Decoding</span>
+            <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">Android 11 / Magisk</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Long-Distance Touring -->
+        <div class="reveal spotlight-card md:col-span-3 p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-7">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-950 dark:text-white">
+              Long-Distance Touring
+            </h3>
+            <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+              Exploring coastal highways and rural trails on my <span class="text-slate-950 dark:text-white font-semibold">Bajaj Discover 125</span> — including endurance rides from <span class="text-slate-950 dark:text-white font-semibold">Noakhali to Cox's Bazar</span>.
+            </p>
+          </div>
+          <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">Bajaj Discover 125 • Noakhali to Cox's Bazar</span>
+        </div>
+
+        <!-- Card 5: Google Maps Local Guide Level 9 (Full-width Feature Card + 6-Photo Gallery) -->
+        <div id="local-guide" class="reveal spotlight-card md:col-span-6 p-7 sm:p-10 rounded-3xl bg-gradient-to-br from-emerald-500/[0.08] via-white/95 to-sky-500/[0.07] dark:from-emerald-500/[0.08] dark:via-zinc-900/60 dark:to-sky-500/[0.06] backdrop-blur-md border border-emerald-600/20 dark:border-emerald-400/20 shadow-sm shadow-slate-900/[0.03] space-y-8">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div class="space-y-4 max-w-2xl">
+              <div class="inline-flex items-center gap-2.5 text-emerald-700 dark:text-emerald-400 text-sm font-bold uppercase tracking-wider">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Google Maps Local Guide • Level 9</span>
+              </div>
+              <blockquote class="font-display text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white leading-snug">
+                “Seeing is believing. But of course with your own eyes, not through the internet.”
+              </blockquote>
+              <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+                Documenting authentic local places, roads, and landmarks across Bangladesh for over nine years — proud participant at the <span class="text-slate-950 dark:text-white font-semibold">Bangladesh Local Guides 12th Anniversary & 300th Mega Meetup</span>.
+              </p>
+            </div>
+
+            <!-- Clean Key Stats -->
+            <div class="grid grid-cols-3 gap-3.5 sm:gap-5 shrink-0">
+              <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-black/30 border border-slate-200/80 dark:border-white/[0.06] shadow-2xs text-center">
+                <div class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white">9+</div>
+                <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-zinc-300 mt-1">Years Active</div>
+              </div>
+              <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-black/30 border border-slate-200/80 dark:border-white/[0.06] shadow-2xs text-center">
+                <div class="font-display text-3xl sm:text-4xl font-extrabold text-emerald-700 dark:text-emerald-400">12K+</div>
+                <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-zinc-300 mt-1">Contributions</div>
+              </div>
+              <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-black/30 border border-slate-200/80 dark:border-white/[0.06] shadow-2xs text-center">
+                <div class="font-display text-3xl sm:text-4xl font-extrabold text-sky-700 dark:text-sky-400">70K+</div>
+                <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-zinc-300 mt-1">Guide Points</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 10-Photo Gallery: Bangladesh Local Guides Meetups, Swag & Milestones -->
+          <div class="pt-6 border-t border-emerald-600/15 dark:border-white/[0.08] space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <h4 class="font-display text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
+                Bangladesh Local Guides — Meetups, Swag & Milestones
+              </h4>
+              <span class="text-xs sm:text-sm font-medium text-slate-600 dark:text-zinc-400">
+                Click any photo to view full screen (10 photos)
+              </span>
+            </div>
+
+            <div id="lg-gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SELECTED PROJECTS SHOWCASE -->
+    <section id="projects" class="py-16 sm:py-24 space-y-10">
+      <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+        <div class="space-y-3">
+          <p class="text-sm font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">Selected Work</p>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-slate-950 dark:text-white">
+            Prototypes & Utilities
+          </h2>
+        </div>
+
+        <!-- Subtle Category Filter Pills -->
+        <div class="flex flex-wrap gap-2" id="project-filters">
+          <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-white dark:bg-white dark:text-zinc-950 transition-all">
+            All
+          </button>
+          <button data-filter="app" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white/90 dark:bg-white/[0.05] border border-slate-200/80 dark:border-transparent text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white transition-all">
+            Mobile & Web
+          </button>
+          <button data-filter="system" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white/90 dark:bg-white/[0.05] border border-slate-200/80 dark:border-transparent text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white transition-all">
+            System & Health
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+        <!-- Populated dynamically via JS for clean modal inspection -->
+      </div>
+    </section>
+
+    <!-- 4. MINIMALIST CONTACT & SOCIAL FOOTER -->
+    <footer id="connect" class="pt-16 pb-20 border-t border-slate-200/90 dark:border-white/[0.08]">
+      <div class="reveal flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div class="space-y-3">
+          <h2 class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white">
+            Let’s connect
+          </h2>
+          <p class="text-lg sm:text-xl font-medium text-slate-800 dark:text-zinc-200 max-w-xl leading-relaxed">
+            Always open to discussing software ideas, hardware tinkering, mapping, or long highway routes.
+          </p>
+        </div>
+
+        <!-- Clean Action Links -->
+        <div class="flex flex-wrap items-center gap-3.5 shrink-0">
+          <!-- Copy Email Button -->
+          <button id="copy-email-btn" data-email="contact@niazmahmud.bro.bd" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-700 dark:text-sky-400 border border-sky-500/30 text-base sm:text-lg font-bold whitespace-nowrap active:scale-[0.98] transition-all">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Email</span>
+          </button>
+
+          <!-- Direct Email Link -->
+          <a href="mailto:contact@niazmahmud.bro.bd" aria-label="Send Email" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-slate-800 dark:text-zinc-200 shadow-2xs transition-all" title="Email">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </a>
+
+          <!-- GitHub Link -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-slate-800 dark:text-zinc-200 shadow-2xs transition-all" title="GitHub">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+            </svg>
+          </a>
+
+          <!-- Google Maps Local Guide Link -->
+          <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Maps Local Guide" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-emerald-700 dark:text-emerald-400 shadow-2xs transition-all" title="Google Maps Local Guide">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm sm:text-base font-medium text-slate-700 dark:text-zinc-300">
+        <p>© <span id="year"></span> Niazul Islam Maruf (Niaz Mahmud). All rights reserved.</p>
+        <p class="font-semibold">Senbag, Noakhali • niazmahmud.bro.bd</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Project Details Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/45 dark:bg-black/65 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div id="modal-panel" class="w-full max-w-xl rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/10 p-7 sm:p-9 shadow-2xl transform scale-95 transition-transform duration-300 space-y-6">
+      <div class="flex items-start justify-between gap-4">
+        <div class="space-y-1.5">
+          <span id="modal-tag" class="text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400"></span>
+          <h3 id="modal-title" class="font-display text-3xl font-bold text-slate-950 dark:text-white"></h3>
+        </div>
+        <button id="close-modal" aria-label="Close modal" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <p id="modal-desc" class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed"></p>
+
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-zinc-400">Highlights & Architecture</h4>
+        <ul id="modal-highlights" class="space-y-2.5 text-base text-slate-800 dark:text-zinc-200"></ul>
+      </div>
+
+      <div id="modal-stack" class="flex flex-wrap gap-2.5 pt-2"></div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Photo Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-md opacity-0 transition-opacity duration-300">
+    <div class="relative w-full max-w-4xl flex flex-col items-center gap-4">
+      <!-- Top Bar: Counter + Close -->
+      <div class="w-full flex items-center justify-between text-white px-1">
+        <span id="lightbox-counter" class="text-sm sm:text-base font-semibold text-zinc-200">1 / 10</span>
+        <button id="close-lightbox" aria-label="Close photo viewer" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Image Stage with Prev / Next Controls -->
+      <div class="relative w-full flex items-center justify-center rounded-3xl overflow-hidden bg-black/40 border border-white/10 shadow-2xl">
+        <button id="lightbox-prev" aria-label="Previous photo" class="absolute left-3 sm:left-4 z-10 p-3 rounded-2xl bg-black/60 hover:bg-black/80 text-white border border-white/15 backdrop-blur-md transition-all active:scale-95">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+
+        <img 
+          id="lightbox-img" 
+          src="" 
+          alt="Bangladesh Local Guides Meetup Photo" 
+          class="max-h-[72vh] w-auto max-w-full object-contain select-none"
+        />
+
+        <button id="lightbox-next" aria-label="Next photo" class="absolute right-3 sm:right-4 z-10 p-3 rounded-2xl bg-black/60 hover:bg-black/80 text-white border border-white/15 backdrop-blur-md transition-all active:scale-95">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Caption -->
+      <p id="lightbox-caption" class="text-center text-base sm:text-lg font-medium text-white max-w-2xl px-2"></p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300">
+    <div class="flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-zinc-950 text-sm sm:text-base font-semibold shadow-lg">
+      <svg class="w-5 h-5 text-emerald-400 dark:text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="toast-message">Email copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- Interactive Vanilla JS -->
+  <script>
+    // Bangladesh Local Guides Meetups, Swag & Milestones Photo Repository (10 Unique Photos)
+    const localGuidePhotos = [
+      {
+        src: 'BDLG-ID-Card-BDLG-20241105-01867 (1).jpg',
+        title: 'Official Participant Pass (Level 9)',
+        caption: 'Official Participant Pass (BDLG # 20241105-01867) — Local Guides Level 9, 12 Years of Bangladesh Local Guides.'
+      },
+      {
+        src: 'IMG_20261114_095050_2.jpg',
+        title: 'Mega Meetup Gift Bag & Pass',
+        caption: '12 Years of Bangladesh Local Guides Mega Meetup Gift Bag & Official Participant Pass.'
+      },
+      {
+        src: 'IMG-20261114-WA0009.jpg',
+        title: '12 Years Celebration Meetup Selfie',
+        caption: 'Meetup selfie at the 12 Years of Bangladesh Local Guides celebration wearing the official event jersey.'
+      },
+      {
+        src: 'DSC_3376~2.jpg',
+        title: 'Fellow Bangladesh Local Guides',
+        caption: 'Group photo with fellow Bangladesh Local Guides contributors at the 12th Anniversary Meetup.'
+      },
+      {
+        src: 'IMG_20261114_101111~2.jpg',
+        title: 'Laser-Engraved Wooden Phone Stand',
+        caption: 'Laser-engraved wooden phone stand souvenir ("পথ দেখি পথ দেখাই" — 12 Years of Bangladesh Local Guides).'
+      },
+      {
+        src: 'IMG_20261114_101330.jpg',
+        title: 'Official BDLG Lanyard Keychain',
+        caption: 'Official Bangladesh Local Guides lanyard keychain & Google Maps Review tag.'
+      },
+      {
+        src: '20261114_121404.jpg',
+        title: 'ConnectLIVE Gold Star Pin',
+        caption: 'Official Google Maps Local Guides ConnectLIVE Gold Star Pin.'
+      },
+      {
+        src: 'IMG_20261114_101419_2.jpg',
+        title: '12th Anniversary & 300th Meetup Stickers',
+        caption: 'Bangladesh Local Guides 12th Anniversary & 300th Meetup collectible stickers (Update Road, Accessibility & Local Meet-up).'
+      },
+      {
+        src: 'IMG20261114115841_2.heic',
+        title: 'Main Stage & Celebration Moments',
+        caption: '12 Years of Bangladesh Local Guides stage session & community celebration moments.'
+      },
+      {
+        src: '20241205_121041.heic',
+        title: '10th Year Celebration Stickers & Map Souvenirs',
+        caption: 'Bangladesh Local Guides 10th Year Celebration Meetup stickers, calendar & map souvenirs.'
+      }
+    ];
+
+    // Project Data Repository
+    const projects = [
+      {
+        id: 'kids-tube',
+        title: 'Kids Tube',
+        category: 'app',
+        tag: 'Flutter + Firebase',
+        summary: 'Curated YouTube Shorts & video streaming app engineered for a safe, distraction-free kids experience.',
+        description: 'Kids Tube eliminates algorithm rabbit holes by allowing parents and curators to whitelist safe channels and Shorts into a clean, child-friendly mobile interface powered by Flutter and Firebase.',
+        highlights: [
+          'Curated video & Shorts feed with strict channel whitelisting',
+          'Real-time cloud playlist syncing via Firebase Firestore',
+          'Minimalist, touch-friendly playback controls'
+        ],
+        stack: ['Flutter', 'Dart', 'Firebase', 'YouTube API']
+      },
+      {
+        id: 'farmeasy',
+        title: 'FarmEasy',
+        category: 'app',
+        tag: 'Agri-Commerce Prototype',
+        summary: 'Direct-to-buyer livestock and poultry e-commerce prototype connecting rural farms with local buyers.',
+        description: 'Designed to simplify livestock and poultry trading in Bangladesh, FarmEasy provides transparent weight/breed listings, direct farmer-to-buyer inquiry flows, and streamlined order tracking.',
+        highlights: [
+          'Structured catalog for cattle, goats, and poultry batches',
+          'Simplified mobile-first checkout and inquiry workflow',
+          'Built for low-bandwidth rural mobile connections'
+        ],
+        stack: ['Mobile UI', 'Prototyping', 'E-Commerce', 'Firebase']
+      },
+      {
+        id: 'proximity-guard',
+        title: 'Proximity Guard Magisk Module',
+        category: 'system',
+        tag: 'Android 11 Root / Magisk',
+        summary: 'System-level Magisk module and root utility locking proximity, camera, and microphone sensors.',
+        description: 'Built for rooted Android 11 devices, Proximity Guard interfaces directly with Android system services and Magisk overlays to prevent accidental pocket wakes and enforce strict hardware sensor permissions.',
+        highlights: [
+          'Systemless Magisk module architecture for Android 11',
+          'Hard lockdown controls for proximity, camera & microphone sensors',
+          'Zero-bloat background footprint with instant shell toggles'
+        ],
+        stack: ['Android 11', 'Magisk', 'Root / Shell', 'System Security']
+      },
+      {
+        id: 'pharmacy-lookup',
+        title: 'Pharmacy Inventory & Price Lookup',
+        category: 'system',
+        tag: 'Healthcare Web Utility',
+        summary: 'Fast medicine stock, generic cross-reference, and retail price lookup tool built for daily pharmacy workflows.',
+        description: 'Inspired by daily operations at Raihan Drug House in Senbag, this responsive web utility streamlines generic-to-brand medicine matching, unit price calculations, and low-stock alerts.',
+        highlights: [
+          'Instant brand & generic medicine search with unit pricing',
+          'Clean, high-contrast interface designed for fast counter lookup',
+          'Lightweight offline-ready architecture for local pharmacy desks'
+        ],
+        stack: ['HTML/CSS', 'JavaScript', 'Pharmacy UX', 'GitHub Pages']
+      }
+    ];
+
+    // DOM Elements
+    const lgGalleryGrid = document.getElementById('lg-gallery-grid');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const closeLightboxBtn = document.getElementById('close-lightbox');
+    const lightboxPrevBtn = document.getElementById('lightbox-prev');
+    const lightboxNextBtn = document.getElementById('lightbox-next');
+    let currentPhotoIndex = 0;
+
+    const projectsGrid = document.getElementById('projects-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const modal = document.getElementById('project-modal');
+    const modalPanel = document.getElementById('modal-panel');
+    const closeModalBtn = document.getElementById('close-modal');
+    const themeToggle = document.getElementById('theme-toggle');
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const toast = document.getElementById('toast');
+    const globalAura = document.getElementById('global-aura');
+
+    // Set Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Render Local Guide 6-Photo Gallery
+    function renderLocalGuideGallery() {
+      if (!lgGalleryGrid) return;
+      lgGalleryGrid.innerHTML = localGuidePhotos.map((photo, index) => `
+        <button
+          type="button"
+          onclick="openLightbox(${index})"
+          class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-200 dark:bg-zinc-800 border border-slate-200/90 dark:border-white/10 shadow-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        >
+          <img
+            src="${photo.src}"
+            alt="${photo.title}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/0f172a?text=${encodeURIComponent(photo.title)}';"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent opacity-85 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3.5 text-left">
+            <span class="text-xs sm:text-sm font-bold text-white leading-snug line-clamp-1">${photo.title}</span>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    // Lightbox Viewer Controls
+    function updateLightboxContent() {
+      const photo = localGuidePhotos[currentPhotoIndex];
+      if (!photo) return;
+      lightboxImg.onerror = function() {
+        this.onerror = null;
+        this.src = `https://placehold.co/1200x900/1e293b/f8fafc?text=${encodeURIComponent(photo.title)}`;
+      };
+      lightboxImg.src = photo.src;
+      lightboxImg.alt = photo.title;
+      lightboxCaption.textContent = photo.caption;
+      lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${localGuidePhotos.length}`;
+    }
+
+    window.openLightbox = function(index) {
+      currentPhotoIndex = index;
+      updateLightboxContent();
+      lightboxModal.classList.remove('hidden');
+      lightboxModal.classList.add('flex');
+      requestAnimationFrame(() => {
+        lightboxModal.classList.remove('opacity-0');
+      });
+    };
+
+    function closeLightbox() {
+      lightboxModal.classList.add('opacity-0');
+      setTimeout(() => {
+        lightboxModal.classList.add('hidden');
+        lightboxModal.classList.remove('flex');
+      }, 280);
+    }
+
+    function showPrevPhoto() {
+      currentPhotoIndex = (currentPhotoIndex - 1 + localGuidePhotos.length) % localGuidePhotos.length;
+      updateLightboxContent();
+    }
+
+    function showNextPhoto() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % localGuidePhotos.length;
+      updateLightboxContent();
+    }
+
+    closeLightboxBtn.addEventListener('click', closeLightbox);
+    lightboxPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrevPhoto(); });
+    lightboxNextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNextPhoto(); });
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+
+    // Render Project Cards
+    function renderProjects(filter = 'all') {
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+      
+      projectsGrid.innerHTML = filtered.map(project => `
+        <article 
+          onclick="openProjectModal('${project.id}')"
+          class="spotlight-card group cursor-pointer p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-6"
+        >
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">${project.tag}</span>
+              <span class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/[0.06] flex items-center justify-center text-slate-600 dark:text-zinc-300 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M7 17 17 7M7 7h10v10"></path>
+                </svg>
+              </span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+              ${project.title}
+            </h3>
+            <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
+              ${project.summary}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 pt-1">
+            ${project.stack.map(tech => `
+              <span class="px-3 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">
+                ${tech}
+              </span>
+            `).join('')}
+          </div>
+        </article>
+      `).join('');
+
+      attachSpotlightListeners();
+    }
+
+    // Filter Click Handlers
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-zinc-950');
+          b.classList.add('bg-white/90', 'dark:bg-white/[0.05]', 'text-slate-700', 'dark:text-zinc-400');
+        });
+        btn.classList.add('active', 'bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-zinc-950');
+        btn.classList.remove('bg-white/90', 'dark:bg-white/[0.05]', 'text-slate-700', 'dark:text-zinc-400');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Modal Logic
+    window.openProjectModal = function(id) {
+      const project = projects.find(p => p.id === id);
+      if (!project) return;
+
+      document.getElementById('modal-tag').textContent = project.tag;
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-desc').textContent = project.description;
+      document.getElementById('modal-highlights').innerHTML = project.highlights.map(item => `
+        <li class="flex items-start gap-3">
+          <span class="mt-2 w-2 h-2 rounded-full bg-sky-600 dark:bg-sky-400 shrink-0"></span>
+          <span>${item}</span>
+        </li>
+      `).join('');
+      document.getElementById('modal-stack').innerHTML = project.stack.map(tech => `
+        <span class="px-3.5 py-1.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-zinc-200">
+          ${tech}
+        </span>
+      `).join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+        modalPanel.classList.remove('scale-95');
+        modalPanel.classList.add('scale-100');
+      });
+    };
+
+    function closeProjectModal() {
+      modal.classList.add('opacity-0');
+      modalPanel.classList.remove('scale-100');
+      modalPanel.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 280);
+    }
+
+    closeModalBtn.addEventListener('click', closeProjectModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeProjectModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (!modal.classList.contains('hidden')) closeProjectModal();
+        if (!lightboxModal.classList.contains('hidden')) closeLightbox();
+      } else if (!lightboxModal.classList.contains('hidden')) {
+        if (e.key === 'ArrowLeft') showPrevPhoto();
+        if (e.key === 'ArrowRight') showNextPhoto();
+      }
+    });
+
+    // Dark / Light Mode Toggle
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // Copy Email with iFrame-Safe Fallback & Toast Feedback
+    let toastTimeout;
+    function showToast(msg) {
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 2600);
+    }
+
+    copyEmailBtn.addEventListener('click', () => {
+      const email = copyEmailBtn.dataset.email;
+      const textArea = document.createElement('textarea');
+      textArea.value = email;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(`Copied: ${email}`);
+      } catch (err) {
+        showToast(email);
+      }
+      document.body.removeChild(textArea);
+    });
+
+    // Subtle Cursor Spotlight on Cards & Ambient Background
+    function attachSpotlightListeners() {
+      document.querySelectorAll('.spotlight-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      if (globalAura) {
+        globalAura.style.transform = `translate(${e.clientX - 275}px, ${e.clientY - 275}px)`;
+      }
+    });
+
+    // Intersection Observer for Smooth Scroll Reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Initialize
+    renderLocalGuideGallery();
+    renderProjects();
+  </script>
+</body>
+</html>
