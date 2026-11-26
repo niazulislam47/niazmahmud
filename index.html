@@ -43,7 +43,6 @@
   </script>
 
   <style>
-    /* Custom Glassmorphism & Interactive Spotlight Utilities */
     :root {
       --spotlight-color: rgba(2, 132, 199, 0.08);
       --border-glow: rgba(15, 23, 42, 0.09);
@@ -63,7 +62,6 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Ambient Spotlight Card Effect */
     .spotlight-card {
       position: relative;
       overflow: hidden;
@@ -94,7 +92,6 @@
       transform: translateY(-3px);
     }
 
-    /* Scroll Reveal Animations */
     .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -106,7 +103,6 @@
       transform: translateY(0);
     }
 
-    /* Subtle Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -151,7 +147,6 @@
   <!-- Minimalist Floating Navigation -->
   <header class="sticky top-4 z-40 px-4 sm:px-6">
     <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3.5 rounded-2xl bg-white/85 dark:bg-zinc-900/65 backdrop-blur-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03]">
-      <!-- Brand / Domain -->
       <a href="#" class="flex items-center gap-3 group">
         <span class="w-3 h-3 rounded-full bg-sky-500 group-hover:scale-125 transition-transform"></span>
         <span class="font-display font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">
@@ -159,7 +154,6 @@
         </span>
       </a>
 
-      <!-- Navigation Links + Theme Toggle -->
       <div class="flex items-center gap-1.5 sm:gap-3">
         <a href="#focus" class="px-3.5 py-2 text-sm sm:text-base font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white rounded-xl transition-colors">
           Focus
@@ -171,14 +165,11 @@
           Connect
         </a>
         
-        <!-- Dark / Light Theme Toggle -->
         <button id="theme-toggle" aria-label="Toggle theme" class="ml-1 p-2.5 rounded-xl text-slate-700 dark:text-zinc-300 hover:bg-slate-200/70 dark:hover:bg-white/[0.07] hover:text-slate-950 dark:hover:text-white transition-all">
-          <!-- Sun Icon (shown in dark mode) -->
           <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
           </svg>
-          <!-- Moon Icon (shown in light mode) -->
           <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
           </svg>
@@ -189,28 +180,26 @@
 
   <main class="max-w-5xl mx-auto px-5 sm:px-8">
 
-    <!-- 1. MINIMALIST ASYMMETRIC SPLIT HERO SECTION -->
+    <!-- 1. MINIMALIST ASYMMETRIC SPLIT HERO SECTION (Photo Left, Text Right) -->
     <section class="relative min-h-[84vh] flex flex-col justify-center py-10 sm:py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-8">
         
-        <!-- Left-Side Portrait Frame (Top on Mobile, Left 5 Columns on Desktop) -->
-        <div class="reveal active order-1 lg:order-1 lg:col-span-5 relative flex justify-center lg:justify-start">
+        <!-- Left-Side Portrait Frame -->
+        <div class="reveal active order-1 lg:col-span-5 relative flex justify-center lg:justify-start">
           <div class="relative w-full max-w-sm sm:max-w-md lg:max-w-none h-[360px] sm:h-[430px] lg:h-[540px] rounded-3xl overflow-hidden select-none pointer-events-none">
             <img 
-              src="20260414_224312-IMG_STYLE.jpg" 
+              src="profile.jpg" 
               alt="Niazul Islam Maruf" 
-              onerror="this.onerror=null;this.src='https://placehold.co/900x1100/e2e8f0/0f172a?text=Niazul+Islam+Maruf';"
+              onerror="this.onerror=null;this.src='20260414_224312-IMG_STYLE.jpg';"
               class="w-full h-full object-cover object-[center_12%] hero-side-portrait transition-all duration-300"
             />
-            <!-- Subtle Right & Bottom Edge Integration with Background -->
             <div class="hidden lg:block absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-50 via-slate-50/50 to-transparent dark:from-obsidian dark:via-obsidian/50 dark:to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 via-slate-50/60 to-transparent dark:from-obsidian dark:via-obsidian/60 dark:to-transparent"></div>
           </div>
         </div>
 
-        <!-- Right-Side Text & Actions (Right 7 Columns on Desktop) -->
-        <div class="reveal active order-2 lg:order-2 lg:col-span-7 relative z-10 space-y-7">
-          <!-- Location Pill -->
+        <!-- Right-Side Text & Actions -->
+        <div class="reveal active order-2 lg:col-span-7 relative z-10 space-y-7">
           <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 dark:bg-zinc-900/80 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.1] text-sm font-medium text-slate-700 dark:text-zinc-200 shadow-xs">
             <svg class="w-4 h-4 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
@@ -219,7 +208,6 @@
             <span>Senbag, Noakhali, Bangladesh</span>
           </div>
 
-          <!-- Primary Identity -->
           <div class="space-y-3.5">
             <h1 class="font-display text-5xl sm:text-6xl lg:text-[4.25rem] font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.06]">
               Niazul Islam Maruf
@@ -229,12 +217,10 @@
             </p>
           </div>
 
-          <!-- Tagline -->
           <p class="max-w-xl text-xl sm:text-2xl text-slate-700 dark:text-zinc-300 leading-relaxed font-normal">
             Building digital experiences, exploring roads, and mapping the world.
           </p>
 
-          <!-- Quick-Action Links -->
           <div class="pt-2 flex flex-wrap items-center gap-3.5 sm:gap-4">
             <a href="#projects" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-zinc-950 font-semibold text-base hover:bg-slate-800 dark:hover:opacity-90 active:scale-[0.98] transition-all shadow-sm shadow-slate-900/15">
               <span>Explore Work</span>
@@ -263,7 +249,6 @@
 
       </div>
 
-      <!-- Subtle Scroll Cue -->
       <div class="relative z-10 mt-12 sm:mt-16 flex items-center gap-3.5 text-sm font-medium text-slate-600 dark:text-zinc-400 animate-float">
         <div class="w-5 h-8 rounded-full border border-slate-300 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/70 flex justify-center p-1">
           <div class="w-1 h-2 rounded-full bg-sky-600 dark:bg-sky-400"></div>
@@ -283,7 +268,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-6 gap-5 sm:gap-6">
         
-        <!-- Card 1: App & Web Prototyping (Wide) -->
+        <!-- Card 1: App & Web Prototyping -->
         <div class="reveal spotlight-card md:col-span-4 p-7 sm:p-9 rounded-3xl bg-white/90 dark:bg-zinc-900/50 backdrop-blur-md border border-slate-200/90 dark:border-white/[0.08] shadow-sm shadow-slate-900/[0.03] flex flex-col justify-between gap-7">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center">
@@ -369,7 +354,7 @@
           <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">Bajaj Discover 125 • Noakhali to Cox's Bazar</span>
         </div>
 
-        <!-- Card 5: Google Maps Local Guide Level 9 (Full-width Feature Card + 6-Photo Gallery) -->
+        <!-- Card 5: Google Maps Local Guide Level 9 (10-Photo Gallery) -->
         <div id="local-guide" class="reveal spotlight-card md:col-span-6 p-7 sm:p-10 rounded-3xl bg-gradient-to-br from-emerald-500/[0.08] via-white/95 to-sky-500/[0.07] dark:from-emerald-500/[0.08] dark:via-zinc-900/60 dark:to-sky-500/[0.06] backdrop-blur-md border border-emerald-600/20 dark:border-emerald-400/20 shadow-sm shadow-slate-900/[0.03] space-y-8">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div class="space-y-4 max-w-2xl">
@@ -384,11 +369,10 @@
                 “Seeing is believing. But of course with your own eyes, not through the internet.”
               </blockquote>
               <p class="text-base sm:text-lg text-slate-700 dark:text-zinc-300 leading-relaxed">
-                Documenting authentic local places, roads, and landmarks across Bangladesh for over nine years — proud participant at the <span class="text-slate-950 dark:text-white font-semibold">Bangladesh Local Guides 12th Anniversary & 300th Mega Meetup</span>.
+                Documenting authentic local places, roads, and landmarks across Bangladesh for over nine years — active participant in <span class="text-slate-950 dark:text-white font-semibold">Bangladesh Local Guides</span> meetups and community milestones.
               </p>
             </div>
 
-            <!-- Clean Key Stats -->
             <div class="grid grid-cols-3 gap-3.5 sm:gap-5 shrink-0">
               <div class="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-black/30 border border-slate-200/80 dark:border-white/[0.06] shadow-2xs text-center">
                 <div class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white">9+</div>
@@ -405,7 +389,6 @@
             </div>
           </div>
 
-          <!-- Interactive 10-Photo Gallery: Bangladesh Local Guides Meetups, Swag & Milestones -->
           <div class="pt-6 border-t border-emerald-600/15 dark:border-white/[0.08] space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <h4 class="font-display text-lg sm:text-xl font-bold text-slate-950 dark:text-white">
@@ -416,7 +399,7 @@
               </span>
             </div>
 
-            <div id="lg-gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
+            <div id="lg-gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-3.5">
               <!-- Populated dynamically via JS -->
             </div>
           </div>
@@ -435,7 +418,6 @@
           </h2>
         </div>
 
-        <!-- Subtle Category Filter Pills -->
         <div class="flex flex-wrap gap-2" id="project-filters">
           <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-white dark:bg-white dark:text-zinc-950 transition-all">
             All
@@ -449,10 +431,7 @@
         </div>
       </div>
 
-      <!-- Project Cards Grid -->
-      <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-        <!-- Populated dynamically via JS for clean modal inspection -->
-      </div>
+      <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6"></div>
     </section>
 
     <!-- 4. MINIMALIST CONTACT & SOCIAL FOOTER -->
@@ -467,9 +446,7 @@
           </p>
         </div>
 
-        <!-- Clean Action Links -->
         <div class="flex flex-wrap items-center gap-3.5 shrink-0">
-          <!-- Copy Email Button -->
           <button id="copy-email-btn" data-email="contact@niazmahmud.bro.bd" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-700 dark:text-sky-400 border border-sky-500/30 text-base sm:text-lg font-bold whitespace-nowrap active:scale-[0.98] transition-all">
             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -478,7 +455,6 @@
             <span>Copy Email</span>
           </button>
 
-          <!-- Direct Email Link -->
           <a href="mailto:contact@niazmahmud.bro.bd" aria-label="Send Email" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-slate-800 dark:text-zinc-200 shadow-2xs transition-all" title="Email">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -486,14 +462,12 @@
             </svg>
           </a>
 
-          <!-- GitHub Link -->
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-slate-800 dark:text-zinc-200 shadow-2xs transition-all" title="GitHub">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
             </svg>
           </a>
 
-          <!-- Google Maps Local Guide Link -->
           <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Maps Local Guide" class="p-3.5 rounded-2xl bg-white/95 dark:bg-white/[0.05] hover:bg-slate-50 dark:hover:bg-white/[0.1] border border-slate-200/90 dark:border-white/[0.08] text-emerald-700 dark:text-emerald-400 shadow-2xs transition-all" title="Google Maps Local Guide">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
@@ -540,7 +514,6 @@
   <!-- Full-Screen Photo Lightbox Modal -->
   <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-md opacity-0 transition-opacity duration-300">
     <div class="relative w-full max-w-4xl flex flex-col items-center gap-4">
-      <!-- Top Bar: Counter + Close -->
       <div class="w-full flex items-center justify-between text-white px-1">
         <span id="lightbox-counter" class="text-sm sm:text-base font-semibold text-zinc-200">1 / 10</span>
         <button id="close-lightbox" aria-label="Close photo viewer" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
@@ -550,7 +523,6 @@
         </button>
       </div>
 
-      <!-- Image Stage with Prev / Next Controls -->
       <div class="relative w-full flex items-center justify-center rounded-3xl overflow-hidden bg-black/40 border border-white/10 shadow-2xl">
         <button id="lightbox-prev" aria-label="Previous photo" class="absolute left-3 sm:left-4 z-10 p-3 rounded-2xl bg-black/60 hover:bg-black/80 text-white border border-white/15 backdrop-blur-md transition-all active:scale-95">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
@@ -572,7 +544,6 @@
         </button>
       </div>
 
-      <!-- Caption -->
       <p id="lightbox-caption" class="text-center text-base sm:text-lg font-medium text-white max-w-2xl px-2"></p>
     </div>
   </div>
@@ -589,61 +560,60 @@
 
   <!-- Interactive Vanilla JS -->
   <script>
-    // Bangladesh Local Guides Meetups, Swag & Milestones Photo Repository (10 Unique Photos)
+    // Bangladesh Local Guides 10-Photo Repository (Clean Filenames)
     const localGuidePhotos = [
       {
-        src: 'BDLG-ID-Card-BDLG-20241105-01867 (1).jpg',
+        src: 'lg-id-card.jpg',
         title: 'Official Participant Pass (Level 9)',
-        caption: 'Official Participant Pass (BDLG # 20241105-01867) — Local Guides Level 9, 12 Years of Bangladesh Local Guides.'
+        caption: 'Bangladesh Local Guides 12 Years Mega Meetup — Official Participant Pass (BDLG #20241105-01867).'
       },
       {
-        src: 'IMG_20261114_095050_2.jpg',
+        src: 'lg-gift-bag.jpg',
         title: 'Mega Meetup Gift Bag & Pass',
-        caption: '12 Years of Bangladesh Local Guides Mega Meetup Gift Bag & Official Participant Pass.'
+        caption: 'Path Dekhi, Path Dekhai — Official Bangladesh Local Guides 12th Anniversary Mega Meetup kit.'
       },
       {
-        src: 'IMG-20261114-WA0009.jpg',
+        src: 'lg-selfie.jpg',
         title: '12 Years Celebration Meetup Selfie',
-        caption: 'Meetup selfie at the 12 Years of Bangladesh Local Guides celebration wearing the official event jersey.'
+        caption: 'Wearing the official 12 Years of Bangladesh Local Guides event jersey and lanyard.'
       },
       {
-        src: 'DSC_3376~2.jpg',
+        src: 'lg-group.jpg',
         title: 'Fellow Bangladesh Local Guides',
-        caption: 'Group photo with fellow Bangladesh Local Guides contributors at the 12th Anniversary Meetup.'
+        caption: 'Group moment with fellow Bangladesh Local Guides contributors during the Mega Meetup.'
       },
       {
-        src: 'IMG_20261114_101111~2.jpg',
-        title: 'Laser-Engraved Wooden Phone Stand',
-        caption: 'Laser-engraved wooden phone stand souvenir ("পথ দেখি পথ দেখাই" — 12 Years of Bangladesh Local Guides).'
+        src: 'lg-wood-stand.jpg',
+        title: 'Laser-Engraved Wooden Stand',
+        caption: 'Custom laser-engraved wooden souvenir marking 12 Years of Bangladesh Local Guides.'
       },
       {
-        src: 'IMG_20261114_101330.jpg',
-        title: 'Official BDLG Lanyard Keychain',
-        caption: 'Official Bangladesh Local Guides lanyard keychain & Google Maps Review tag.'
+        src: 'lg-keychain.jpg',
+        title: 'Official BDLG Event Keychain',
+        caption: 'Bangladesh Local Guides collectible keychain and review badge souvenir.'
       },
       {
-        src: '20261114_121404.jpg',
+        src: 'lg-connectlive-pin.jpg',
         title: 'ConnectLIVE Gold Star Pin',
-        caption: 'Official Google Maps Local Guides ConnectLIVE Gold Star Pin.'
+        caption: 'Official Google Maps Local Guides ConnectLIVE gold star lapel pin.'
       },
       {
-        src: 'IMG_20261114_101419_2.jpg',
+        src: 'lg-stickers-12.jpg',
         title: '12th Anniversary & 300th Meetup Stickers',
-        caption: 'Bangladesh Local Guides 12th Anniversary & 300th Meetup collectible stickers (Update Road, Accessibility & Local Meet-up).'
+        caption: 'Collectible stickers celebrating 300th Meetup, Update Road, Accessibility, and Local Meet-ups.'
       },
       {
-        src: 'IMG20261114115841_2.heic',
+        src: 'lg-stage.jpg',
         title: 'Main Stage & Celebration Moments',
-        caption: '12 Years of Bangladesh Local Guides stage session & community celebration moments.'
+        caption: 'Opening remarks and community session on stage at the 12 Years Mega Meetup.'
       },
       {
-        src: '20241205_121041.heic',
+        src: 'lg-stickers-10.jpg',
         title: '10th Year Celebration Stickers & Map Souvenirs',
-        caption: 'Bangladesh Local Guides 10th Year Celebration Meetup stickers, calendar & map souvenirs.'
+        caption: 'Throwback memorabilia from the Bangladesh Local Guides 10th Year Celebration Meetup.'
       }
     ];
 
-    // Project Data Repository
     const projects = [
       {
         id: 'kids-tube',
@@ -703,7 +673,6 @@
       }
     ];
 
-    // DOM Elements
     const lgGalleryGrid = document.getElementById('lg-gallery-grid');
     const lightboxModal = document.getElementById('lightbox-modal');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -724,10 +693,8 @@
     const toast = document.getElementById('toast');
     const globalAura = document.getElementById('global-aura');
 
-    // Set Current Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Render Local Guide 6-Photo Gallery
     function renderLocalGuideGallery() {
       if (!lgGalleryGrid) return;
       lgGalleryGrid.innerHTML = localGuidePhotos.map((photo, index) => `
@@ -743,14 +710,13 @@
             onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/0f172a?text=${encodeURIComponent(photo.title)}';"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent opacity-85 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3.5 text-left">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent opacity-85 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-left">
             <span class="text-xs sm:text-sm font-bold text-white leading-snug line-clamp-1">${photo.title}</span>
           </div>
         </button>
       `).join('');
     }
 
-    // Lightbox Viewer Controls
     function updateLightboxContent() {
       const photo = localGuidePhotos[currentPhotoIndex];
       if (!photo) return;
@@ -799,7 +765,6 @@
       if (e.target === lightboxModal) closeLightbox();
     });
 
-    // Render Project Cards
     function renderProjects(filter = 'all') {
       const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
       
@@ -838,7 +803,6 @@
       attachSpotlightListeners();
     }
 
-    // Filter Click Handlers
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         filterButtons.forEach(b => {
@@ -851,7 +815,6 @@
       });
     });
 
-    // Modal Logic
     window.openProjectModal = function(id) {
       const project = projects.find(p => p.id === id);
       if (!project) return;
@@ -904,12 +867,10 @@
       }
     });
 
-    // Dark / Light Mode Toggle
     themeToggle.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
     });
 
-    // Copy Email with iFrame-Safe Fallback & Toast Feedback
     let toastTimeout;
     function showToast(msg) {
       document.getElementById('toast-message').textContent = msg;
@@ -937,7 +898,6 @@
       document.body.removeChild(textArea);
     });
 
-    // Subtle Cursor Spotlight on Cards & Ambient Background
     function attachSpotlightListeners() {
       document.querySelectorAll('.spotlight-card').forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -956,7 +916,6 @@
       }
     });
 
-    // Intersection Observer for Smooth Scroll Reveals
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -967,7 +926,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Initialize
     renderLocalGuideGallery();
     renderProjects();
   </script>
